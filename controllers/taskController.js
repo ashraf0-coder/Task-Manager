@@ -16,8 +16,7 @@ let tasks = [
     }
 ]
 
-
-//get all tasks
+             //get all tasks
 const getAlltasks = (req, res) =>{
     res.status(200).json({
         isSucces: true,
@@ -25,21 +24,16 @@ const getAlltasks = (req, res) =>{
         tasks: tasks
     })
 }
-
-//get single task
+             //get single task
 const getSingleTask = (req, res) => {
     const taskId = req.params.id
-
     const targetTask = tasks.find(t => t.id === parseInt(taskId))
-
     if(!targetTask){
         return res.status(404).json({
             isSucces: false,
             message: `The task with the id:${taskId} is not found!`
         })
     }
-
-
     return res.status(200).json({
         isSucces: true,
         message: `The task with the id:${taskId} is found`,
@@ -47,41 +41,33 @@ const getSingleTask = (req, res) => {
     })
 }
 
-//delete a task
-
+             //delete a task
 const deleteTask = (req, res) => {
     const taskId = req.params.id
-
-    const isTaskExist = tasks.some(t => t.id === parseInt(taskId))
-    
+    const isTaskExist = tasks.some(t => t.id === parseInt(taskId)) 
     if(!isTaskExist) {
         return res.status(404).json({
             isSucces:false,
             message:`The task with id:${taskId} is not found!`
         })
     }
-
     tasks = tasks.filter(t => t.id !== parseInt(taskId))
-
     return res.status(200).json({
         isSucces: true,
         message: `The task with id:${taskId} is being deleted successfully`
     })
 }
 
-//create a task
+             //create a task
 const createTask = (req, res) => {
     const {name, description, dueDate, status} = req.body
-
     if(!name || !description || !dueDate || !status) {
         return res.status(400).json({
             isSucces: false,
             message: "Fill all the inputs"
         })
     }
-
     //check valid status
-
     const validStatus = ["comlpleted", "pending", "in progress"]
     if(!validStatus.includes(status)) {
         return res.status(400).json({
@@ -89,7 +75,6 @@ const createTask = (req, res) => {
             message: "The status must be valid"
         })
     }
-
     idCounter += 1
     const newTask = {
         id: idCounter,
@@ -98,29 +83,24 @@ const createTask = (req, res) => {
         dueDate,
         status
     }
-
     tasks.push(newTask)
-
     return res.status(200).json({
         isSucces: true,
         message: "new task was added"
     })
 }
 
-     // update a task
+             // update a task
 const updateTask = (req, res) => {
     const targetId = parseInt(req.params.id)
     const updates = req.body
-
     const targetTask = tasks.find(t => t.id === taskId)
-
     if(!targetTask) {
         res.status(404).json({
             isSucces:false,
             message:`The task with id:${taskId} is not found!`
         })
     }
-
         //check valid status
     const validStatus = ["comlpleted", "pending", "in progress"]
     if(!validStatus.includes(updates.status)) {
@@ -134,10 +114,8 @@ const updateTask = (req, res) => {
             isSucces: true,
             message: `The user with id:${taskId} is updated succesfully`,
             task : tasks
-
         })
 }
-
 
 module.exports = {
     getAlltasks,
