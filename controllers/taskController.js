@@ -1,10 +1,10 @@
-let idCounter =2
+let idCounter =4
 let tasks = [
     {
         id: 1,
         name: "abdirasak",
         description: "you must be coming in the morning",
-        dueDate: "2024-12-13",
+        dueDate: "2024-12-12",
         status: "completed"
     },
     {
@@ -13,6 +13,20 @@ let tasks = [
         description: "you must be coming in the evening",
         dueDate: "2024-12-13",
         status: "pending"
+    },
+    {
+        id: 3,
+        name: "Abdilahi",
+        description: "you have to be running now",
+        dueDate: "2024-12-12",
+        status: "completed"
+    },
+    {
+        id: 4,
+        name: "Nuur",
+        description: "you are the father of code",
+        dueDate: "2024-12-13",
+        status: "in progress"
     }
 ]
 
@@ -68,7 +82,7 @@ const createTask = (req, res) => {
         })
     }
     //check valid status
-    const validStatus = ["comlpleted", "pending", "in progress"]
+    const validStatus = ["completed", "pending", "in progress"]
     if(!validStatus.includes(status)) {
         return res.status(400).json({
             isSucces:false,
@@ -102,7 +116,7 @@ const updateTask = (req, res) => {
         })
     }
         //check valid status
-    const validStatus = ["comlpleted", "pending", "in progress"]
+    const validStatus = ["completed", "pending", "in progress"]
     if(!validStatus.includes(updates.status)) {
         return res.status(400).json({
             isSucces:false,
