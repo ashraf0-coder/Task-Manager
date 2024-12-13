@@ -92,7 +92,7 @@ const createTask = (req, res) => {
 
              // update a task
 const updateTask = (req, res) => {
-    const targetId = parseInt(req.params.id)
+    const taskId = parseInt(req.params.id)
     const updates = req.body
     const targetTask = tasks.find(t => t.id === taskId)
     if(!targetTask) {
